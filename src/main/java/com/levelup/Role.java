@@ -1,4 +1,5 @@
 package com.levelup;
+
 /**
  * Class {@link com.levelup.Role}
  *

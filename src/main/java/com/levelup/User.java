@@ -10,8 +10,8 @@ import javax.persistence.*;
  * @since 09.12.15
  */
 @Entity
-@Table(name="user")
-@NamedQuery(name="User.getALL", query="select u from User u")
+@Table(name = "user")
+@NamedQuery(name = "User.getALL", query = "select u from User u")
 
 public class User {
     private long id;
@@ -21,9 +21,10 @@ public class User {
 
     public User() {
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @Column(name = "id")
     public long getId() {
         return id;
     }
@@ -31,7 +32,8 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
-    @Column(name="login")
+
+    @Column(name = "login")
     public String getLogin() {
         return login;
     }
@@ -39,7 +41,8 @@ public class User {
     public void setLogin(String login) {
         this.login = login;
     }
-    @Column(name="pass")
+
+    @Column(name = "pass")
     public String getPass() {
         return pass;
     }
@@ -47,7 +50,8 @@ public class User {
     public void setPass(String pass) {
         this.pass = pass;
     }
-    @Column(name="email")
+
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }

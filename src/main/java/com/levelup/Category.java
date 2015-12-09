@@ -10,8 +10,8 @@ import javax.persistence.*;
  * @since 09.12.15
  */
 @Entity
-@Table(name="category")
-@NamedQuery(name="Category.getALL", query="select c from Category c")
+@Table(name = "category")
+@NamedQuery(name = "Category.getALL", query = "select c from Category c")
 
 public class Category {
     private long id_category;
@@ -19,9 +19,10 @@ public class Category {
 
     public Category() {
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id_category")
+    @Column(name = "id_category")
     public long getId_category() {
         return id_category;
     }
@@ -29,7 +30,8 @@ public class Category {
     public void setId_category(long id_category) {
         this.id_category = id_category;
     }
-    @Column(name="title_category")
+
+    @Column(name = "title_category")
     public String getTitle_category() {
         return title_category;
     }
