@@ -1,9 +1,9 @@
-package com.levelup;
+package com.levelup.model;
 
 import javax.persistence.*;
 
 /**
- * Class {@link com.levelup.Category}
+ * Class {@link Category}
  *
  * @author Skityashin Vladimir
  * @version 1.0

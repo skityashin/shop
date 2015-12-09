@@ -1,7 +1,7 @@
-package com.levelup;
+package com.levelup.model;
 
 /**
- * Class {@link com.levelup.Role}
+ * Class {@link Role}
  *
  * @author Skityashin Vladimir
  * @version 1.0

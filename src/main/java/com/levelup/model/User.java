@@ -1,9 +1,9 @@
-package com.levelup;
+package com.levelup.model;
 
 import javax.persistence.*;
 
 /**
- * Class {@link com.levelup.User}
+ * Class {@link User}
  *
  * @author Skityashin Vladimir
  * @version 1.0
@@ -18,6 +18,7 @@ public class User {
     private String login;
     private String pass;
     private String email;
+    private Role role;
 
     public User() {
     }
@@ -58,5 +59,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    @Enumerated
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
