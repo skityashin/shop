@@ -23,9 +23,10 @@ public class User {
     public User() {
     }
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public long getId() {
         return id;
     }
@@ -34,7 +35,8 @@ public class User {
         this.id = id;
     }
 
-    @Column(name = "login")
+
+    @Column(name = "login", nullable = false, length = 50)
     public String getLogin() {
         return login;
     }
@@ -43,7 +45,8 @@ public class User {
         this.login = login;
     }
 
-    @Column(name = "pass")
+
+    @Column(name = "pass", nullable = false)
     public String getPass() {
         return pass;
     }
@@ -51,6 +54,7 @@ public class User {
     public void setPass(String pass) {
         this.pass = pass;
     }
+
 
     @Column(name = "email")
     public String getEmail() {
@@ -60,6 +64,8 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
     @Enumerated
     public Role getRole() {
         return role;

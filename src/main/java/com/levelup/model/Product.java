@@ -19,13 +19,15 @@ public class Product {
     private String description;
     private double price;
     private int quantity;
+    private Category category;
 
     public Product() {
     }
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_prod")
+    @Column(name = "id_prod", nullable = false)
     public long getId_prod() {
         return id_prod;
     }
@@ -33,6 +35,7 @@ public class Product {
     public void setId_prod(long id_prod) {
         this.id_prod = id_prod;
     }
+
 
     @Transient
     public String getDescription() {
@@ -43,6 +46,7 @@ public class Product {
         this.description = description;
     }
 
+
     @Column(name = "price")
     public double getPrice() {
         return price;
@@ -51,6 +55,7 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+
 
     @Column(name = "quantity")
     public int getQuantity() {
@@ -61,12 +66,24 @@ public class Product {
         this.quantity = quantity;
     }
 
-    //    @Column(name="title_prod")
+
+    @Column(name="title_prod")
     public String getTitle_prod() {
         return title_prod;
     }
 
     public void setTitle_prod(String title_prod) {
         this.title_prod = title_prod;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

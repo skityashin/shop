@@ -3,6 +3,7 @@ package com.levelup.dao.impl;
 import com.levelup.dao.UserDao;
 import com.levelup.model.User;
 import com.levelup.util.HibernateUtil;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,8 +37,22 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findById(long id) throws SQLException {
-        return null;
+        Session session = null;
+        User user = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            user =  (User) session.get(User.class, id);
+            Hibernate.initialize(user);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        } finally {
+            if(session != null && session.isOpen()){
+                session.close();
+            }
+        }
+        return user;
     }
+
 
     @Override
     public void updateUser(User user) throws SQLException {
@@ -57,22 +72,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void deleteUser(User user) throws SQLException {
+    public void deleteUser(long id) throws SQLException {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.delete(user);
+            session.delete(findById(id));
             session.getTransaction().commit();
-        } catch (Exception e){
+        }catch (Exception e){
             System.out.println(e.getMessage());
-        } finally {
+        }finally {
             if(session != null && session.isOpen()){
                 session.close();
             }
         }
-    }
 
+    }
     @Override
     public List<User> getAllUsers() throws SQLException {
         Session session = null;
@@ -87,6 +102,6 @@ public class UserDaoImpl implements UserDao {
                 session.close();
             }
         }
-        return null;
+        return users;
     }
 }
