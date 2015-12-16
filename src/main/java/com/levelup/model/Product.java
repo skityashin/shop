@@ -1,6 +1,7 @@
 package com.levelup.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Class {@link Product}
@@ -9,17 +10,20 @@ import javax.persistence.*;
  * @version 1.0
  * @since 09.12.15
  */
+
 @Entity
 @Table(name = "product")
 @NamedQuery(name = "Product.getALL", query = "select p from Product p")
 
 public class Product {
+
     private long id_prod;
     private String title_prod;
     private String description;
     private double price;
     private int quantity;
     private Category category;
+    private Set<Tag> tags;
 
     public Product() {
     }
@@ -85,5 +89,15 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 }

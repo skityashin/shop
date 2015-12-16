@@ -9,11 +9,13 @@ import javax.persistence.*;
  * @version 1.0
  * @since 09.12.15
  */
+
 @Entity
 @Table(name = "user")
 @NamedQuery(name = "User.getALL", query = "select u from User u")
 
 public class User {
+
     private long id;
     private String login;
     private String pass;
@@ -66,7 +68,7 @@ public class User {
     }
 
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     public Role getRole() {
         return role;
     }

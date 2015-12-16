@@ -11,6 +11,7 @@ import java.util.List;
  * @version 1.0
  * @since 09.12.15
  */
+
 public interface UserDao {
     public void saveUser (User user) throws SQLException;
     public User findById (long id) throws SQLException;

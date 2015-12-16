@@ -1,9 +1,9 @@
 package com.levelup;
 
 import com.levelup.dao.Factory;
-import com.levelup.model.Role;
-import com.levelup.model.User;
+import com.levelup.model.*;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -13,6 +13,7 @@ import java.util.List;
  * @version 1.0
  * @since 09.12.15
  */
+
 public class HibernateTest {
     public static void main(String[] args) throws Exception{
         User user1 = new User();
@@ -34,10 +35,52 @@ public class HibernateTest {
         user3.setEmail("hhhhhhhs@346.com");
         user3.setRole(Role.CUSTOMER);
 
-    // save users
+
+        Category category1 = new Category();
+        Category category2 = new Category();
+        Category category3 = new Category();
+
+        category1.setTitle_category("TV");
+        category2.setTitle_category("Mobile");
+        category3.setTitle_category("Computer");
+
+
+        Product product1 = new Product();
+        Product product2 = new Product();
+        Product product3 = new Product();
+
+        product1.setTitle_prod("lg 670");
+        product1.setCategory(category1);
+        product1.setPrice(8250.98);
+        product2.setTitle_prod("samsung 500");
+        product2.setCategory(category2);
+        product2.setPrice(684.5);
+        product3.setTitle_prod("toshiba s30");
+        product3.setCategory(category3);
+        product3.setPrice(4800.58);
+
+//        Media media1 = new Media();
+//
+//        media1.setTitle_media("televisor");
+//        media1.setLength(250);
+//        media1.setWidth(200);
+//        media1.setSize(500);
+//        media1.setPath("D:/file1.jpg");
+//        media1.setTitle_media("big");
+//        media1.setMediaType(MediaType.PICTURE);
+
+        // save Users
 //        Factory.getInstance().getUserDao().saveUser(user1);
 //        Factory.getInstance().getUserDao().saveUser(user2);
 //        Factory.getInstance().getUserDao().saveUser(user3);
+        // save Category
+//        Factory.getInstance().getCategoryDao().saveCategory(category1);
+//        Factory.getInstance().getCategoryDao().saveCategory(category2);
+//        Factory.getInstance().getCategoryDao().saveCategory(category3);
+        // save Products
+//        Factory.getInstance().getProductDao().saveProduct(product1);
+//        Factory.getInstance().getProductDao().saveProduct(product2);
+//        Factory.getInstance().getProductDao().saveProduct(product3);
 
     // out by all
         List<User> users = Factory.getInstance().getUserDao().getAllUsers();

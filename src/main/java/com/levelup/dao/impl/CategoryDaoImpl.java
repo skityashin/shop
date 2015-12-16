@@ -1,30 +1,33 @@
 package com.levelup.dao.impl;
 
-import com.levelup.dao.UserDao;
-import com.levelup.model.User;
+import com.levelup.dao.CategoryDao;
+import com.levelup.model.Category;
 import com.levelup.util.HibernateUtil;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class {@link com.levelup.dao.impl.UserDaoImpl}
+ * Class {@link com.levelup.dao.UserDao}
  *
  * @author Skityashin Vladimir
  * @version 1.0
- * @since 09.12.15
+ * @since 16.12.15
  */
-public class UserDaoImpl implements UserDao {
+
+public class CategoryDaoImpl implements CategoryDao {
+
+    Session session = null;
 
     @Override
-    public void saveUser(User user) throws SQLException {
-        Session session = null;
+    public void saveCategory(Category category) throws SQLException {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(user);
+            session.save(category);
             session.getTransaction().commit();
         } catch (Exception e){
             System.out.println(e.getMessage());
@@ -36,13 +39,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findById(long id) throws SQLException {
-        Session session = null;
-        User user = null;
+    public Category findById(long id_category) throws SQLException {
+        Category category = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            user =  (User) session.get(User.class, id);
-            Hibernate.initialize(user);
+            category =  (Category) session.get(Category.class, id_category);
+            Hibernate.initialize(category);
         } catch (Exception e){
             System.out.println(e.getMessage());
         } finally {
@@ -50,17 +52,15 @@ public class UserDaoImpl implements UserDao {
                 session.close();
             }
         }
-        return user;
+        return category;
     }
 
-
     @Override
-    public void updateUser(User user) throws SQLException {
-        Session session = null;
+    public void updateCategory(Category category) throws SQLException {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.update(user);
+            session.update(category);
             session.getTransaction().commit();
         } catch (Exception e){
             System.out.println(e.getMessage());
@@ -72,12 +72,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void deleteUser(long id) throws SQLException {
-        Session session = null;
+    public void deleteCategory(long id_category) throws SQLException {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.delete(findById(id));
+            session.delete(findById(id_category));
             session.getTransaction().commit();
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -89,12 +88,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> getAllUsers() throws SQLException {
-        Session session = null;
-        List<User> users = new ArrayList<User>();
+    public List<Category> getAllCategory() throws SQLException {
+        List<Category> categories = new ArrayList<Category>();
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            users = session.createCriteria(User.class).list();
+            categories = session.createCriteria(Category.class).list();
         } catch (Exception e){
             System.out.println(e.getMessage());
         } finally {
@@ -102,6 +100,6 @@ public class UserDaoImpl implements UserDao {
                 session.close();
             }
         }
-        return users;
+        return categories;
     }
 }

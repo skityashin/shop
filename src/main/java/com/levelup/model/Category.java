@@ -10,14 +10,17 @@ import java.util.List;
  * @version 1.0
  * @since 09.12.15
  */
+
 @Entity
 @Table(name = "category")
 @NamedQuery(name = "Category.getALL", query = "select c from Category c")
 
 public class Category {
+
     private long id_category;
     private String title_category;
     private List<Product> products;
+
     public Category() {
     }
 

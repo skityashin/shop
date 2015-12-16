@@ -1,7 +1,7 @@
 package com.levelup.dao.impl;
 
-import com.levelup.dao.UserDao;
-import com.levelup.model.User;
+import com.levelup.dao.TagDao;
+import com.levelup.model.Tag;
 import com.levelup.util.HibernateUtil;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -10,21 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class {@link com.levelup.dao.impl.UserDaoImpl}
+ * Class {@link com.levelup.dao.impl.TagDaoImpl}
  *
  * @author Skityashin Vladimir
  * @version 1.0
- * @since 09.12.15
+ * @since 16.12.15
  */
-public class UserDaoImpl implements UserDao {
+public class TagDaoImpl implements TagDao {
+
+    Session session = null;
 
     @Override
-    public void saveUser(User user) throws SQLException {
-        Session session = null;
+    public void saveTag(Tag tag) throws SQLException {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(user);
+            session.save(tag);
             session.getTransaction().commit();
         } catch (Exception e){
             System.out.println(e.getMessage());
@@ -36,13 +37,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findById(long id) throws SQLException {
-        Session session = null;
-        User user = null;
+    public Tag findById(long id_tag) throws SQLException {
+        Tag tag = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            user =  (User) session.get(User.class, id);
-            Hibernate.initialize(user);
+            tag =  (Tag) session.get(Tag.class, id_tag);
+            Hibernate.initialize(tag);
         } catch (Exception e){
             System.out.println(e.getMessage());
         } finally {
@@ -50,17 +50,15 @@ public class UserDaoImpl implements UserDao {
                 session.close();
             }
         }
-        return user;
+        return tag;
     }
 
-
     @Override
-    public void updateUser(User user) throws SQLException {
-        Session session = null;
+    public void updateTag(Tag tag) throws SQLException {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.update(user);
+            session.update(tag);
             session.getTransaction().commit();
         } catch (Exception e){
             System.out.println(e.getMessage());
@@ -72,12 +70,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void deleteUser(long id) throws SQLException {
-        Session session = null;
+    public void deleteTag(long id_tag) throws SQLException {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.delete(findById(id));
+            session.delete(findById(id_tag));
             session.getTransaction().commit();
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -89,12 +86,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> getAllUsers() throws SQLException {
-        Session session = null;
-        List<User> users = new ArrayList<User>();
+    public List<Tag> getAllTag() throws SQLException {
+        List<Tag> tag = new ArrayList<Tag>();
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            users = session.createCriteria(User.class).list();
+            tag = session.createCriteria(Tag.class).list();
         } catch (Exception e){
             System.out.println(e.getMessage());
         } finally {
@@ -102,6 +98,6 @@ public class UserDaoImpl implements UserDao {
                 session.close();
             }
         }
-        return users;
+        return tag;
     }
 }

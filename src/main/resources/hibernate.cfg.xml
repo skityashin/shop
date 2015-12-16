@@ -17,6 +17,8 @@
         <mapping class="com.levelup.model.User" />
         <mapping class="com.levelup.model.Product" />
         <mapping class="com.levelup.model.Category" />
+        <mapping class="com.levelup.model.Media" />
+        <mapping class="com.levelup.model.Tag" />
 
 
     </session-factory>
